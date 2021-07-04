@@ -30,7 +30,7 @@ class Config(object):
 
 
     def get_property(self, property_name):
-        if property_name not in self._conf.keys:
+        if property_name not in self._conf.keys():
             return None
         else:
             return self._conf[property_name]
@@ -55,6 +55,6 @@ class ParserConfig(Config):
         return self.get_property('embed')
 
     @property
-    def class(self):
+    def quote(self):
         return self.get_property('quote')
 
