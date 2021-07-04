@@ -1,15 +1,20 @@
 import pytest
 
-from ..src.parser import 
+from ..src.parser import EditorJSParser
 
-class Test_EditorJS_Parser: 
+class Test_EditorJSParser: 
 
-    def test_parser_with_empty_list(self):
-        
-        assert False 
+    ###########3 Test Constructor ###################3
 
-    def test_parser_with_list(self):
+    def test_constructor_with_empty_list(self):
+        pass
+
+    def test_constructor_with_list(self):
         assert False  
 
-    def test_parser_with_incorrect_input(self):
-        assert False 
+    def test_constructor_with_incorrect_input(self):
+        with pytest.raises(ValueError):
+            bla = EditorJSParser("")
+    
+
+    ###########3 Test Parser ###################3
