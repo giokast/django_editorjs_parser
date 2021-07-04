@@ -1,3 +1,7 @@
+# https://www.hackerearth.com/practice/notes/samarthbhargav/a-design-pattern-for-configuration-management-in-python/
+
+
+
 conf = {
     'image': {
         'use': "figure", # figure or img (figcaption will be used for caption of figure)
@@ -31,7 +35,7 @@ class Config(object):
 
     def get_property(self, property_name):
         if property_name not in self._conf.keys():
-            return None
+            raise ValueError("property doesn't exist")
         else:
             return self._conf[property_name]
 
