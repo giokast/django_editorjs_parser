@@ -2,8 +2,18 @@
 
 class Plugins:
 
-    def header(self, data):
-        return f"<h{data.level}> {data.text} <h{data.level}/>"
+    @staticmethod
+    def header(block):
+        data = block['data']
+        return f"<h{data['level']}>{data['text']}</h{data['level']}>"
 
-    def list(self, data):
-        pass
+    @staticmethod
+    def list(block):
+        data = block['data']
+        type_of_list = "ol" if data['style'] == "ordered" else "ul"
+
+        html_list = [f"<li> {item} </li>" for item in data['items']]
+
+        return f"<{type_of_list}> {' '.join(map(str,html_list))} </{type_of_list}>"
+
+
