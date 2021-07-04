@@ -17,7 +17,7 @@ class Test_Plugins:
 
         assert correct_html == parsed_html
 
-    def test_ordered_list_plugin_returns_correct_html(self):
+    def test_list_plugin_returns_correct_html(self):
 
         data =  {
                 "type": "list",
@@ -37,25 +37,11 @@ class Test_Plugins:
         parsed_html = Plugins.list(data)
 
         assert correct_html == parsed_html
+    
+    def test_table_plugin_returns_correct_html(self):
+        
+        assert False
 
-
-    # difference ordered vs unordered list: https://sabe.io/classes/html/lists
-    # test not necessary
-    def test_unordered_list_plugin_returns_correct_html(self):
-
-        data =  {
-                "type": "list",
-                "data": {
-                    "style": "unordered",
-                    "items": [
-                        "Search Engine",
-                        "Google fonts",
-                        "Google images",
-                        "Google maps"
-                    ]
-                }
-        }
-        pass
 
     def test_paragraph_plugin_returns_correct_html(self):
         

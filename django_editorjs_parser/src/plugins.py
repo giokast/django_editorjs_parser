@@ -15,5 +15,9 @@ class Plugins:
         html_list = [f"<li> {item} </li>" for item in data['items']]
 
         return f"<{type_of_list}> {' '.join(map(str,html_list))} </{type_of_list}>"
+    
+    @staticmethod
+    def table(block):
+        return 0
 
 
