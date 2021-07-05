@@ -69,7 +69,7 @@ class Test_Plugins:
 
         assert correct_html == parsed_html
 
-    def test_code_plugin_correct_html(self):
+    def test_code_plugin_returns_correct_html(self):
 
         code_config = ParserConfig().get_property('code')
         data = {
@@ -83,4 +83,51 @@ class Test_Plugins:
         parsed_html = Plugins.code(data, code_config)
 
         assert correct_html == parsed_html
+    
+    def test_delimiter_plugin_returns_correct_html(self):
         
+        data =  {
+            "type": "delimiter"
+        }
+
+        correct_html = "</br>"
+        parsed_html = Plugins.delimiter(data)
+
+        assert correct_html == parsed_html
+    
+    def test_raw_plugin_returns_correct_html(self):
+        
+        data = {
+            "type": "raw",
+            "data": {
+                "html": "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/Vd1xADQ\"  \
+                            ><a href=\"//imgur.com/a/Vd1xADQ\">Dark arts and crafts!</a>"
+            }
+        }
+
+        correct_html = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/Vd1xADQ\"  \
+                            ><a href=\"//imgur.com/a/Vd1xADQ\">Dark arts and crafts!</a>"
+        
+        parsed_html = Plugins.raw(data)
+
+
+        assert correct_html == parsed_html
+    
+    def test_embed_plugin_returns_correct_html_for_youtube(self):
+
+        embed_config = ParserConfig().get_property('embed')
+        data =  {
+            "type": "embed",
+            "data": {
+                "service": "instagram",
+                "source": "https://www.instagram.com/p/CFuMV9MhwlL",
+                "embed": "https://www.instagram.com/p/CFuMV9MhwlL/embed",
+                "width": 400,
+                "height": 505,
+                "caption": ""
+            }
+        }
+
+        correct_html = '<blockquote class="instagram-media" <{data.length}>><a href="<{data.embed}>/captioned"></a></blockquote><script async defer src="//www.instagram.com/embed.js"></script>',
+
+        parsed_html = Plugins.embed(data, embed_config)

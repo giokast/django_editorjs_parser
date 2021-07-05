@@ -1,6 +1,10 @@
 
 
+import re
+from django_editorjs_parser.src.helpers import sanitize_HTML
+
 class Plugins:
+
 
     @staticmethod
     def header(block):
@@ -21,10 +25,50 @@ class Plugins:
         data = block['data']
         return f"<p class='{config['pClass']}'> {data['text']} </p>"
 
+    @staticmethod
     def code(block, config):
         data = block['data']
+
+        markup = sanitize_HTML(data['code'])
         return f"<pre><code> class='{config['codeBlockClass']}'> {data['code']} </code><pre>"
     
+    @staticmethod
+    def delimiter(block):
+        return "</br>"
+    
+    @staticmethod
+    def raw(block):
+        data = block['data']
+        return data['html']
+
+    
+
+    @staticmethod
+    def embed(block, config):
+
+        data = block['data']
+
+        data['length'] = ""
+        if config['use_provided_length']: 
+            data['length'] = f"width='{data['width']}' height='{data['height']}'"
+        
+
+        
+
+        # backreferencing with regex matching
+        # using functions for replacement logic
+        regex = re.compile('<{data\.(.+?)}>')
+
+        def replace_with_dict_key(m):
+            return data[m.group(1)]
+
+        service_markup = config['embed_markups'][data['service']]
+        if not service_markup:
+            service_markup = config['embed_markups']['default_markup']
+            
+        formatted_service_markup = re.sub(regex, replace_with_dict_key, service_markup)
+        return formatted_service_markup
+
     @staticmethod
     def table(block):
         return 0
