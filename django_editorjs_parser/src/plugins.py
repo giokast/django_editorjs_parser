@@ -53,22 +53,25 @@ class Plugins:
             data['length'] = f"width='{data['width']}' height='{data['height']}'"
         
 
-        
-
-        # backreferencing with regex matching
-        # using functions for replacement logic
-        regex = re.compile('<{data\.(.+?)}>')
-
         def replace_with_dict_key(m):
             return data[m.group(1)]
 
-        service_markup = config['embed_markups'][data['service']]
-        if not service_markup:
-            service_markup = config['embed_markups']['default_markup']
-            
-        formatted_service_markup = re.sub(regex, replace_with_dict_key, service_markup)
-        return formatted_service_markup
+        # backreferencing with regex matching: 
+        # using functions for replacement logic in re.sub: 
+        regex = re.compile('<{data\.(.+?)}>')
 
+        try:
+            service_markup = config['embed_markups'][data['service']]
+        except KeyError as e:
+            print(e)
+            service_markup = config['embed_markups']['default_markup']
+        finally: 
+            formatted_service_markup = re.sub(regex, replace_with_dict_key, service_markup)
+            return formatted_service_markup
+
+
+            
+        
     @staticmethod
     def table(block):
         return 0
