@@ -1,3 +1,4 @@
+
 # https://www.hackerearth.com/practice/notes/samarthbhargav/a-design-pattern-for-configuration-management-in-python/
 
 
@@ -30,8 +31,8 @@ conf = {
 class Config(object):
 
     def __init__(self):
-        self._conf = conf
 
+        self._conf = conf
 
     def get_property(self, property_name):
         if property_name not in self._conf.keys():

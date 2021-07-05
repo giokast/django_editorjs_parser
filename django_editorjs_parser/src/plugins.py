@@ -15,6 +15,15 @@ class Plugins:
         html_list = [f"<li> {item} </li>" for item in data['items']]
 
         return f"<{type_of_list}> {' '.join(map(str,html_list))} </{type_of_list}>"
+
+    @staticmethod
+    def paragraph(block, config):
+        data = block['data']
+        return f"<p class='{config['pClass']}'> {data['text']} </p>"
+
+    def code(block, config):
+        data = block['data']
+        return f"<pre><code> class='{config['codeBlockClass']}'> {data['code']} </code><pre>"
     
     @staticmethod
     def table(block):

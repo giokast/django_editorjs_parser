@@ -1,0 +1,21 @@
+{
+    "image": {
+        "use": "figure",
+        "imgClass": "img",
+        "figureClass": "fig-img",
+        "figCapClass": "fig-cap",
+        "path": "absolute"
+    },
+    "paragraph": {
+        "pClass": "paragraph"
+    },
+    "code": {
+        "codeBlockClass": "code-block"
+    },
+    "embed": {
+        "useProvidedLength": "False"
+    },
+    "quote": {
+        "applyAlignment": "False"
+    }
+}

@@ -20,7 +20,7 @@ class TestParserConfig():
         parser_conf = ParserConfig()
         image_config = parser_conf.image
         correct_image_conf = {
-                'use': "figure", # figure or img (figcaption will be used for caption of figure)
+                'use': "figure", 
                 'imgClass': "img",
                 'figureClass': "fig-img",
                 'figCapClass': "fig-cap",
@@ -67,7 +67,6 @@ class TestParserConfig():
         correct_quote_config =  {
                 'applyAlignment': False,
         }
-        
 
         assert quote_config == correct_quote_config
     
