@@ -1,13 +1,13 @@
 import pytest
 
-from ..src.config import ParserConfig, Config
+from ..src.config import ParserConfig, BaseConfig
 
 
 class TestConfig():
 
     def test_value_error_raised_when_getting_non_existing_configuration_property(self):
 
-        conf = Config()
+        conf = BaseConfig()
         
         with pytest.raises(ValueError):
             conf.get_property('sdfasdf')

@@ -47,7 +47,7 @@
             "type": "table",
             "data": {
                 "content": [
-                    ["", "Me", "Me"],
+                    [" ", "Me", "Me"],
                     ["You", "Ugly", "Big"]
                 ]
             }

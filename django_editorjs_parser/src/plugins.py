@@ -3,6 +3,8 @@
 import re
 from django_editorjs_parser.src.helpers import sanitize_HTML
 
+from functools import reduce
+
 class Plugins:
 
 
@@ -68,12 +70,53 @@ class Plugins:
         finally: 
             formatted_service_markup = re.sub(regex, replace_with_dict_key, service_markup)
             return formatted_service_markup
-
-
-            
         
     @staticmethod
     def table(block):
-        return 0
+        data = block['data']['content']
+
+        table_data = ""
+        for entry in data: 
+            table_row = ""
+            for data in entry:
+                table_row += "<td>'" + data + "'</td>"
+            table_data += "<tr>" + table_row + "</tr>"
+
+        return "<table><tbody>" + table_data + "</tbody></table>"
+    
+    @staticmethod
+    def image(block, config):
+        data = block['data']
+        img_is_full_width =  "img-fullwidth" if (data['stretched']) else "" 
+        img_has_border = "img_border" if (data['withBorder']) else ""
+        img_has_background = "img-bg" if (data['withBackground']) else ""
+        img_conditions = " " + img_is_full_width + " " + img_has_border + " " + img_has_background
+
+        img_class = ""
+        try: 
+            img_class = config['imgClass']
+        except KeyError as e:
+            print('Key doenst exist')
+        
+        img_source = ""
+
+        if data['url']:
+            img_source = data['url']
+        elif config['path'] == 'absolute':
+            img_source = data['file']['url']
+        else: 
+            #ToDo
+            pass
+
+        if config['use'] == 'img':
+            return f"<img class='{img_conditions} {img_class}' src='{img_source}' alt='{data['caption']}"
+        elif config['use'] == 'figure':
+
+            figure_class = config['figureClass'] or ""
+            figure__caption_class = config['figCapClass'] or ""
+            
+            return '<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>'
+
+        return ""
 
 

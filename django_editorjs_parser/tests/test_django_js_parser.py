@@ -4,17 +4,23 @@ from ..src.parser import EditorJSParser
 
 class Test_EditorJSParser: 
 
-    ###########3 Test Constructor ###################3
+    ###########3 Test Constructor ###################
 
-    def test_constructor_with_empty_list(self):
+    def test_constuctors_with_empty_parameters(self):
+        parser = EditorJSParser()
+
+
+
+    def test_constructor_with_custom_config(self):
         pass
 
-    def test_constructor_with_list(self):
+    def test_constructor_with_custom_embeds(self):
         assert False  
 
-    def test_constructor_with_incorrect_input(self):
-        with pytest.raises(ValueError):
-            bla = EditorJSParser("")
+    def test_constructor_with_custom_parsers(self):
+        # check if after constructing with custom parser
+        # the custom function should be in the list of functions belonging to the class
+        pass
     
 
     ###########3 Test Parser ###################3

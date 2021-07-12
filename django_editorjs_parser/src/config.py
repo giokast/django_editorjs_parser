@@ -41,7 +41,7 @@ conf = {
 
 }
 
-class Config(object):
+class BaseConfig(object):
 
     def __init__(self):
 
@@ -54,7 +54,7 @@ class Config(object):
             return self._conf[property_name]
 
 
-class ParserConfig(Config):
+class ParserConfig(BaseConfig):
 
     @property
     def image(self):

@@ -40,17 +40,22 @@ class Test_Plugins:
         assert correct_html == parsed_html
     
     def test_table_plugin_returns_correct_html(self):
+
         data = {
+            "type": "table",
+            "data": {
                 "content": [
                     ["", "Me", "Me"],
                     ["You", "Ugly", "Big"]
                 ]
             }
+        }
 
-        correct_html = ""
+        correct_html = "<table><tbody><tr><td>''</td><td>'Me'</td><td>'Me'</td></tr><tr><td>'You'</td><td>'Ugly'</td><td>'Big'</td></tr></tbody></table>"
+        parsed_html = Plugins.table(data)
 
 
-        assert False
+        assert correct_html == parsed_html
 
 
     def test_paragraph_plugin_returns_correct_html(self):
@@ -204,4 +209,23 @@ class Test_Plugins:
 
         correct_html = '<div class="embed"><iframe src="https://www.youtube.com/embed/1z6sLQJHbP0" class="embed-unknown" allowfullscreen="true" frameborder="0" ></iframe></div>'
         parsed_html = Plugins.embed(data, embed_config)
+        assert correct_html == parsed_html
+
+    def test_image_plugin_returns_correct_html(self):
+        img_config = ParserConfig().get_property('image')
+
+        data = {
+            "type": "image",
+            "data": {
+                "url": "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg",
+                "caption": "Roadster // tesla.com",
+                "withBorder": False,
+                "withBackground": False,
+                "stretched": True
+            }
+        }
+
+        correct_html = '<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>'
+        parsed_html = Plugins.image(data, img_config)
+
         assert correct_html == parsed_html
