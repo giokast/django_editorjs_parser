@@ -8,7 +8,7 @@ class Test_EditorJSParser:
 
     def test_constuctors_with_empty_parameters(self):
         parser = EditorJSParser()
-
+        pass
 
 
     def test_constructor_with_custom_config(self):
@@ -24,3 +24,58 @@ class Test_EditorJSParser:
     
 
     ###########3 Test Parser ###################3
+
+    def test_bla(self):
+        parser = EditorJSParser()
+
+        data = {
+                "time": 1601898039654,
+                "blocks": [{
+                        "type": "image",
+                        "data": {
+                            "url": "https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg",
+                            "caption": "Roadster // tesla.com",
+                            "withBorder": False,
+                            "withBackground": False,
+                            "stretched": True
+                        }
+                    },
+                    {
+                        "type": "paragraph",
+                        "data": {
+                            "text": "Hello There, it is a test post related to <a href=\"https://google.com\">Google</a> which is the <b>biggest</b> search engine!"
+                        }
+                    },
+                    {
+                        "type": "header",
+                        "data": {
+                            "text": "Google's attributes",
+                            "level": 2
+                        }
+                    },
+                    {
+                        "type": "list",
+                        "data": {
+                            "style": "ordered",
+                            "items": [
+                                "Search Engine",
+                                "Google fonts",
+                                "Google images",
+                                "Google maps"
+                            ]
+                        }
+                    },
+                    {
+                        "type": "quote",
+                        "data": {
+                            "text": "If your access to health care involves your leaving work and driving somewhere and parking and waiting for a long time, that's not going to promote healthiness.",
+                            "caption": "Larry Page",
+                            "alignment": "left"
+                        }
+                    },
+                ]}
+        
+
+        parser.parse(data)
+
+        assert False

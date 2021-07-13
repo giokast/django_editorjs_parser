@@ -20,8 +20,8 @@ conf = {
     'embed': {
         #  set to true if you want the returned width and height of editorjs to be applied
         #  NOTE: sometimes source site overrides the lengths so it does not work 100%
-        'use_provided_length': False,
-        'embed_markups' : { 
+        'useProvidedLength': False,
+        'embedMarkups' : { 
             
             'youtube': '<div class="embed"><iframe class="embed-youtube" frameborder="0" src="<{data.embed}>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen<{data.length}>></iframe></div>',
 
@@ -49,9 +49,15 @@ class BaseConfig(object):
 
     def get_property(self, property_name):
         if property_name not in self._conf.keys():
-            raise ValueError("property doesn't exist")
+            return ValueError("property doesn't exist")
         else:
             return self._conf[property_name]
+    
+    def set_property(self, property_name, value):
+        if property_name not in self._conf.keys():
+            return ValueError("property doesn't exist")
+        else: 
+            self._conf[property_name] = value
 
 
 class ParserConfig(BaseConfig):

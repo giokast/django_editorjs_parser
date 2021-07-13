@@ -1,20 +1,21 @@
 
 
+from django_editorjs_parser.src import config
 import re
 from django_editorjs_parser.src.helpers import sanitize_HTML
 
 from functools import reduce
 
-class Plugins:
+class DefaultPlugins:
 
 
     @staticmethod
-    def header(block):
+    def header(block, *args, **kwargs):
         data = block['data']
         return f"<h{data['level']}>{data['text']}</h{data['level']}>"
 
     @staticmethod
-    def list(block):
+    def list(block, *args, **kwargs):
         data = block['data']
         type_of_list = "ol" if data['style'] == "ordered" else "ul"
 
@@ -23,35 +24,36 @@ class Plugins:
         return f"<{type_of_list}> {' '.join(map(str,html_list))} </{type_of_list}>"
 
     @staticmethod
-    def paragraph(block, config):
+    def paragraph(block, *args, **kwargs):
         data = block['data']
+        config = kwargs['config']
         return f"<p class='{config['pClass']}'> {data['text']} </p>"
 
     @staticmethod
-    def code(block, config):
+    def code(block, *args, **kwargs):
         data = block['data']
-
+        config = kwargs['config']
         markup = sanitize_HTML(data['code'])
         return f"<pre><code> class='{config['codeBlockClass']}'> {data['code']} </code><pre>"
     
     @staticmethod
-    def delimiter(block):
+    def delimiter(block, *args, **kwargs):
         return "</br>"
     
     @staticmethod
-    def raw(block):
+    def raw(block, *args, **kwargs):
         data = block['data']
         return data['html']
 
     
 
     @staticmethod
-    def embed(block, config):
+    def embed(block, *args, **kwargs):
 
         data = block['data']
-
+        config = kwargs['config']
         data['length'] = ""
-        if config['use_provided_length']: 
+        if config['useProvidedLength']: 
             data['length'] = f"width='{data['width']}' height='{data['height']}'"
         
 
@@ -63,16 +65,16 @@ class Plugins:
         regex = re.compile('<{data\.(.+?)}>')
 
         try:
-            service_markup = config['embed_markups'][data['service']]
+            service_markup = config['embedMarkups'][data['service']]
         except KeyError as e:
             print(e)
-            service_markup = config['embed_markups']['default_markup']
+            service_markup = config['embedMarkups']['default_markup']
         finally: 
             formatted_service_markup = re.sub(regex, replace_with_dict_key, service_markup)
             return formatted_service_markup
         
     @staticmethod
-    def table(block):
+    def table(block, *args, **kwargs):
         data = block['data']['content']
 
         table_data = ""
@@ -85,8 +87,9 @@ class Plugins:
         return "<table><tbody>" + table_data + "</tbody></table>"
     
     @staticmethod
-    def image(block, config):
+    def image(block, *args, **kwargs):
         data = block['data']
+        config = kwargs['config']
         img_is_full_width =  "img-fullwidth" if (data['stretched']) else "" 
         img_has_border = "img_border" if (data['withBorder']) else ""
         img_has_background = "img-bg" if (data['withBackground']) else ""

@@ -3,15 +3,6 @@ import pytest
 from ..src.config import ParserConfig, BaseConfig
 
 
-class TestConfig():
-
-    def test_value_error_raised_when_getting_non_existing_configuration_property(self):
-
-        conf = BaseConfig()
-        
-        with pytest.raises(ValueError):
-            conf.get_property('sdfasdf')
-
 
 class TestParserConfig():
 
@@ -54,8 +45,20 @@ class TestParserConfig():
         parser_conf = ParserConfig()
         embed_config = parser_conf.embed
         correct_embed_config = {
-            'useProvidedLength': False,
-        }   
+        'useProvidedLength': False,
+        'embedMarkups' : { 
+            
+            'youtube': '<div class="embed"><iframe class="embed-youtube" frameborder="0" src="<{data.embed}>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen<{data.length}>></iframe></div>',
+
+            'twitter': '<blockquote class="twitter-tweet" class="embed-twitter"<{data.length}>><a href="<{data.source}>"></a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>',
+
+            'instagram': '<blockquote class="instagram-media"<{data.length}>><a href="<{data.embed}>/captioned"></a></blockquote><script async defer src="//www.instagram.com/embed.js"></script>',
+
+            'codepen': '<div class="embed"><iframe <{data.length}>scrolling="no" src="<{data.embed}>" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe></div>',
+
+            'default_markup': '<div class="embed"><iframe src="<{data.embed}>"<{data.length}> class="embed-unknown" allowfullscreen="true" frameborder="0" ></iframe></div>',
+        }
+    }
         
         assert embed_config == correct_embed_config
 
@@ -66,7 +69,25 @@ class TestParserConfig():
         quote_config = parser_conf.quote
         correct_quote_config =  {
                 'applyAlignment': False,
+                
         }
 
         assert quote_config == correct_quote_config
+
+class TestDefaultConfig():
+
+    def test_value_error_raised_when_getting_non_existing_configuration_property(self):
+
+        conf = BaseConfig()
+        
+        with pytest.raises(ValueError):
+            conf.get_property('sdfasdf')
     
+    def test_can_set_conf_to_new_values(self):
+        conf = BaseConfig()
+
+        new_value = "new value"
+        conf.set_property('embed', "new value")
+        embed_conf = conf.get_property('embed')
+
+        assert embed_conf == new_value

@@ -1,4 +1,4 @@
-from ..src.plugins import Plugins
+from ..src.plugins import DefaultPlugins
 from ..src.config import ParserConfig
 
 class Test_Plugins:
@@ -14,7 +14,7 @@ class Test_Plugins:
             }
 
         correct_html = "<h2>Google's attributes</h2>"
-        parsed_html = Plugins.header(data)
+        parsed_html = DefaultPlugins.header(data)
 
         assert correct_html == parsed_html
 
@@ -35,7 +35,7 @@ class Test_Plugins:
 
         correct_html = "<ol> <li> Search Engine </li> <li> Google fonts </li> <li> Google images </li> <li> Google maps </li> </ol>"
 
-        parsed_html = Plugins.list(data)
+        parsed_html = DefaultPlugins.list(data)
 
         assert correct_html == parsed_html
     
@@ -52,7 +52,7 @@ class Test_Plugins:
         }
 
         correct_html = "<table><tbody><tr><td>''</td><td>'Me'</td><td>'Me'</td></tr><tr><td>'You'</td><td>'Ugly'</td><td>'Big'</td></tr></tbody></table>"
-        parsed_html = Plugins.table(data)
+        parsed_html = DefaultPlugins.table(data)
 
 
         assert correct_html == parsed_html
@@ -70,7 +70,7 @@ class Test_Plugins:
         
         correct_html = "<p class='paragraph'> Hello There, it is a test post related to <a href=\"https://google.com\">Google</a> which is the <b>biggest</b> search engine! </p>"
 
-        parsed_html = Plugins.paragraph(data, para_config)
+        parsed_html = DefaultPlugins.paragraph(data, config=para_config)
 
         assert correct_html == parsed_html
 
@@ -85,7 +85,7 @@ class Test_Plugins:
         }        
 
         correct_html = "<pre><code> class='code-block'> const path = require(\"path\");\nconst cookieParser = require(\"cookie-parser\");\n </code><pre>"
-        parsed_html = Plugins.code(data, code_config)
+        parsed_html = DefaultPlugins.code(data, config=code_config)
 
         assert correct_html == parsed_html
     
@@ -96,7 +96,7 @@ class Test_Plugins:
         }
 
         correct_html = "</br>"
-        parsed_html = Plugins.delimiter(data)
+        parsed_html = DefaultPlugins.delimiter(data)
 
         assert correct_html == parsed_html
     
@@ -113,7 +113,7 @@ class Test_Plugins:
         correct_html = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/Vd1xADQ\"  \
                             ><a href=\"//imgur.com/a/Vd1xADQ\">Dark arts and crafts!</a>"
         
-        parsed_html = Plugins.raw(data)
+        parsed_html = DefaultPlugins.raw(data)
 
 
         assert correct_html == parsed_html
@@ -134,7 +134,7 @@ class Test_Plugins:
         }
 
         correct_html = '<blockquote class="instagram-media"><a href="https://www.instagram.com/p/CFuMV9MhwlL/embed/captioned"></a></blockquote><script async defer src="//www.instagram.com/embed.js"></script>'
-        parsed_html = Plugins.embed(data, embed_config)
+        parsed_html = DefaultPlugins.embed(data, config=embed_config)
 
         assert correct_html == parsed_html
     
@@ -153,7 +153,7 @@ class Test_Plugins:
         }
 
         correct_html = '<blockquote class="twitter-tweet" class="embed-twitter"><a href="https://twitter.com/SpaceX/status/1310962850601545728"></a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>'
-        parsed_html = Plugins.embed(data, embed_config)
+        parsed_html = DefaultPlugins.embed(data, config=embed_config)
 
         assert correct_html == parsed_html
 
@@ -172,7 +172,7 @@ class Test_Plugins:
         }
 
         correct_html = '<div class="embed"><iframe scrolling="no" src="https://codepen.io/traversbray/embed/NWNZwPq?height=300&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"></iframe></div>'
-        parsed_html = Plugins.embed(data, embed_config)
+        parsed_html = DefaultPlugins.embed(data, config=embed_config)
         assert correct_html == parsed_html
 
     def test_embed_plugin_returns_correct_html_for_youtube(self):
@@ -190,7 +190,7 @@ class Test_Plugins:
         }
 
         correct_html = '<div class="embed"><iframe class="embed-youtube" frameborder="0" src="https://www.youtube.com/embed/1z6sLQJHbP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
-        parsed_html = Plugins.embed(data, embed_config)
+        parsed_html = DefaultPlugins.embed(data, config=embed_config)
         assert correct_html == parsed_html
 
     def test_embed_plugin_defaults_to_defaultmarkup_for_unknown_service(self):
@@ -208,7 +208,7 @@ class Test_Plugins:
         }
 
         correct_html = '<div class="embed"><iframe src="https://www.youtube.com/embed/1z6sLQJHbP0" class="embed-unknown" allowfullscreen="true" frameborder="0" ></iframe></div>'
-        parsed_html = Plugins.embed(data, embed_config)
+        parsed_html = DefaultPlugins.embed(data, config=embed_config)
         assert correct_html == parsed_html
 
     def test_image_plugin_returns_correct_html(self):
@@ -226,6 +226,6 @@ class Test_Plugins:
         }
 
         correct_html = '<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>'
-        parsed_html = Plugins.image(data, img_config)
+        parsed_html = DefaultPlugins.image(data, config=img_config)
 
         assert correct_html == parsed_html
