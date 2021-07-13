@@ -74,14 +74,15 @@ class TestParserConfig():
 
         assert quote_config == correct_quote_config
 
-class TestDefaultConfig():
+class TestBaseConfig():
 
     def test_value_error_raised_when_getting_non_existing_configuration_property(self):
 
         conf = BaseConfig()
         
-        with pytest.raises(ValueError):
-            conf.get_property('sdfasdf')
+        exception = conf.get_property('sdfasdf')
+
+        assert exception == ValueError
     
     def test_can_set_conf_to_new_values(self):
         conf = BaseConfig()
