@@ -68,7 +68,7 @@ class Test_Plugins:
                 }
             }
         
-        correct_html = "<p class='paragraph'> Hello There, it is a test post related to <a href=\"https://google.com\">Google</a> which is the <b>biggest</b> search engine! </p>"
+        correct_html = '<p class="paragraph"> Hello There, it is a test post related to <a href="https://google.com">Google</a> which is the <b>biggest</b> search engine! </p>'
 
         parsed_html = DefaultPlugins.paragraph(data, config=para_config)
 
@@ -228,6 +228,6 @@ class Test_Plugins:
         correct_html = '<figure class="$fig-img"><img class="$img $ img-fullwidth  " src="$https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg" alt="$Roadster // tesla.com"><figcaption class="$fig-cap">$Roadster // tesla.com</figcaption></figure>'
         
         parsed_html = DefaultPlugins.image(data, config=img_config)
-        print(parsed_html)
         
         assert correct_html == parsed_html
+    
