@@ -63,22 +63,22 @@ class BaseConfig(object):
 class ParserConfig(BaseConfig):
 
     @property
-    def image(self):
+    def image_conf(self):
         return self.get_property('image')
 
     @property
-    def paragraph(self):
+    def paragraph_conf(self):
         return self.get_property('paragraph')
 
     @property
-    def code(self):
+    def code_conf(self):
         return self.get_property('code')
 
     @property
-    def embed(self):
+    def embed_conf(self):
         return self.get_property('embed')
 
     @property
-    def quote(self):
+    def quote_conf(self):
         return self.get_property('quote')
 

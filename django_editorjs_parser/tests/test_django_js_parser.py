@@ -15,7 +15,7 @@ class Test_EditorJSParser:
         pass
 
     def test_constructor_with_custom_embeds(self):
-        assert False  
+        pass
 
     def test_constructor_with_custom_parsers(self):
         # check if after constructing with custom parser
@@ -25,7 +25,7 @@ class Test_EditorJSParser:
 
     ###########3 Test Parser ###################3
 
-    def test_bla(self):
+    def test_parsing_of_block(self):
         parser = EditorJSParser()
 
         data = {
@@ -75,7 +75,8 @@ class Test_EditorJSParser:
                     },
                 ]}
         
+        
+        html = parser.parse(data)
 
-        parser.parse(data)
-
-        assert False
+        assert html == ""
+        

@@ -1,4 +1,3 @@
-from ast import parse
 from .config import ParserConfig
 from .plugins import DefaultPlugins
 
@@ -6,7 +5,7 @@ class EditorJSParser:
 
     def __init__(self, config = {}, custom_plugins = {}, custom_embeds = {}):
         self.config = ParserConfig()._conf
-        # append custom functions to 
+
         self.plugins = DefaultPlugins()
 
         self.embeds = ParserConfig().get_property('embed')
@@ -15,17 +14,22 @@ class EditorJSParser:
                 self.embeds[k] = v
 
     def parse(self, editorjs_object):
-        html = map(self.parse_block, editorjs_object['blocks'])
-        print(list(html))
+        markup = map(self.parse_block, editorjs_object['blocks'])
+        html = ' '.join(list(markup))
+        return html
     
     def parse_block(self, block):
-        type = block['type']
+        plugin_name = block['type']
 
-        bla = dir(DefaultPlugins)
+        methods_list = dir(DefaultPlugins)
         
-        if type in bla:
-            method = getattr(DefaultPlugins, type)
-            markup = method(block, ParserConfig().get_property(type))
-            return method
+        if plugin_name in methods_list:
+            method = getattr(DefaultPlugins, plugin_name)
+            markup = method(block, config=ParserConfig().get_property(type))
+            return markup
+        
+        return "<div> empty </div>"
+    
+
 
 
