@@ -78,5 +78,5 @@ class Test_EditorJSParser:
         
         html = parser.parse(data)
 
-        assert html == ""
+        assert html == '<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure> <p class="paragraph"> Hello There, it is a test post related to <a href=\"https://google.com\">Google</a> which is the <b>biggest</b> search engine! </p>'
         

@@ -26,7 +26,7 @@ class EditorJSParser:
         
         if plugin_name in methods_list:
             method = getattr(DefaultPlugins, plugin_name)
-            markup = method(block, config=ParserConfig().get_property(type))
+            markup = method(block, config=ParserConfig().get_property(plugin_name))
             return markup
         
         return "<div> empty </div>"

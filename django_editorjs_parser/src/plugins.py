@@ -116,9 +116,9 @@ class DefaultPlugins:
         elif config['use'] == 'figure':
 
             figure_class = config['figureClass'] or ""
-            figure__caption_class = config['figCapClass'] or ""
+            figure_caption_class = config['figCapClass'] or ""
             
-            return '<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>'
+            return f'<figure class="${figure_class}"><img class="${img_class} ${img_conditions}" src="${img_source}" alt="${data["caption"]}"><figcaption class="${figure_caption_class}">${data["caption"]}</figcaption></figure>'
 
         return ""
 

@@ -110,8 +110,8 @@ class Test_Plugins:
             }
         }
 
-        correct_html = "<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/Vd1xADQ\"  \
-                            ><a href=\"//imgur.com/a/Vd1xADQ\">Dark arts and crafts!</a>"
+        correct_html = '<blockquote class=\"imgur-embed-pub\" lang=\"en\" data-id=\"a/Vd1xADQ\"  \
+                            ><a href=\"//imgur.com/a/Vd1xADQ\">Dark arts and crafts!</a>'
         
         parsed_html = DefaultPlugins.raw(data)
 
@@ -225,7 +225,9 @@ class Test_Plugins:
             }
         }
 
-        correct_html = '<figure class="${figureClass}"><img class="${imgClass} ${imageConditions}" src="${imageSrc}" alt="${data.caption}"><figcaption class="${figCapClass}">${data.caption}</figcaption></figure>'
+        correct_html = '<figure class="$fig-img"><img class="$img $ img-fullwidth  " src="$https://www.tesla.com/tesla_theme/assets/img/_vehicle_redesign/roadster_and_semi/roadster/hero.jpg" alt="$Roadster // tesla.com"><figcaption class="$fig-cap">$Roadster // tesla.com</figcaption></figure>'
+        
         parsed_html = DefaultPlugins.image(data, config=img_config)
-
+        print(parsed_html)
+        
         assert correct_html == parsed_html
