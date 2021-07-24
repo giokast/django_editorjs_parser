@@ -1,6 +1,8 @@
 from .config import ParserConfig
 from .plugins import DefaultPlugins
 
+from .helpers import deep_copy_dict
+
 class EditorJSParser:
 
     def __init__(self, config = {}, custom_plugins = {}, custom_embeds = {}):
@@ -10,8 +12,7 @@ class EditorJSParser:
 
         self.embeds = ParserConfig().get_property('embed')
         if custom_embeds:
-            for k,v in custom_embeds.items():
-                self.embeds[k] = v
+            self.embeds = deep_copy_dict(self.embeds, custom_embeds)
 
     def parse(self, editorjs_object):
         markup = map(self.parse_block, editorjs_object['blocks'])

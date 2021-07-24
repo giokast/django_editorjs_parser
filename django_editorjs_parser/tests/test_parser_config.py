@@ -9,7 +9,7 @@ class TestParserConfig():
     def test_get_image_conf(self):
 
         parser_conf = ParserConfig()
-        image_config = parser_conf.get_image_conf
+        image_config = parser_conf.image_conf
         correct_image_conf = {
                 'use': "figure", 
                 'imgClass': "img",
@@ -23,7 +23,7 @@ class TestParserConfig():
     def test_get_paragraph_conf(self):
 
         parser_conf = ParserConfig()
-        paragraph_config = parser_conf.get_paragraph_conf
+        paragraph_config = parser_conf.paragraph_conf
         correct_paragraph_config = {
             'pClass': "paragraph",
         }
@@ -33,7 +33,7 @@ class TestParserConfig():
     def test_get_code_conf(self):
 
         parser_conf = ParserConfig()
-        code_config = parser_conf.get_code_conf
+        code_config = parser_conf.code_conf
         correct_code_config = {
             'codeBlockClass': "code-block",
         }
@@ -43,7 +43,7 @@ class TestParserConfig():
     def test_get_embed_conf(self):
 
         parser_conf = ParserConfig()
-        embed_config = parser_conf.get_embed_conf
+        embed_config = parser_conf.embed_conf
         correct_embed_config = {
         'useProvidedLength': False,
         'embedMarkups' : { 
@@ -66,7 +66,7 @@ class TestParserConfig():
     def test_get_quote_conf(self):
 
         parser_conf = ParserConfig()
-        quote_config = parser_conf.get_quote_conf
+        quote_config = parser_conf.quote_conf
         correct_quote_config =  {
                 'applyAlignment': False,
                 
