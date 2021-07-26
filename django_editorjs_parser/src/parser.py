@@ -1,18 +1,22 @@
 from .config import ParserConfig
 from .plugins import DefaultPlugins
 
-from .helpers import deep_copy_dict
+from .helpers import nested_dict_copy, add_method_to
 
 class EditorJSParser:
 
-    def __init__(self, config = {}, custom_plugins = {}, custom_embeds = {}):
-        self.config = ParserConfig()._conf
-
+    def __init__(self, custom_config = {}, custom_plugins = {}, custom_embeds = {}):
+        
         self.plugins = DefaultPlugins()
+
 
         self.embeds = ParserConfig().get_property('embed')
         if custom_embeds:
-            self.embeds = deep_copy_dict(self.embeds, custom_embeds)
+            self.embeds = nested_dict_copy(self.embeds, custom_embeds)
+
+        self.config = ParserConfig()._conf
+        if custom_config:
+            self.config = nested_dict_copy(self.config, custom_config)
 
     def parse(self, editorjs_object):
         markup = map(self.parse_block, editorjs_object['blocks'])
@@ -21,7 +25,6 @@ class EditorJSParser:
     
     def parse_block(self, block):
         plugin_name = block['type']
-
         methods_list = dir(DefaultPlugins)
         
         if plugin_name in methods_list:

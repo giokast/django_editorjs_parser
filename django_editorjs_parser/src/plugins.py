@@ -1,8 +1,8 @@
-
-
 from django_editorjs_parser.src import config
-import re
 from django_editorjs_parser.src.helpers import sanitize_HTML
+
+import re
+
 
 from functools import reduce
 

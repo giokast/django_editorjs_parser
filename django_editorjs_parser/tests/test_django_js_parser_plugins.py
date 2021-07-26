@@ -68,7 +68,7 @@ class Test_Plugins:
                 }
             }
         
-        correct_html = '<p class="paragraph"> Hello There, it is a test post related to <a href="https://google.com">Google</a> which is the <b>biggest</b> search engine! </p>'
+        correct_html = '<p class=\'paragraph\'> Hello There, it is a test post related to <a href="https://google.com">Google</a> which is the <b>biggest</b> search engine! </p>'
 
         parsed_html = DefaultPlugins.paragraph(data, config=para_config)
 

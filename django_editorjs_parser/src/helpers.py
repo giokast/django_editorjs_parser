@@ -22,14 +22,14 @@ def sanitize_HTML(markup):
     return markup
 
 
-def deep_copy_dict(dict_1, dict_2):
+def nested_dict_copy(dict_1, dict_2):
     "copies or appends the keys of nested dicts"
     for k,v in dict_2.items():
         if k in dict_1:
             if isinstance(dict_1.get(k), str):
                 dict_1[k] = dict_2[k]
             elif isinstance(dict_1.get(k), dict):
-                deep_copy_dict(dict_1[k], dict_2[k])
+                nested_dict_copy(dict_1[k], dict_2[k])
         else: 
             dict_1[k] = v
 

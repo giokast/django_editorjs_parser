@@ -1,3 +1,5 @@
 parser.py: 
 
     - add custom configuration is added as parameter
+    - finish test for correctly parsing each block in 'clean-blocks' DONE
+    - add custom functions to plusing dynamically

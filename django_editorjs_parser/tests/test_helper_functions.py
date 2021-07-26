@@ -1,6 +1,6 @@
 import pytest
 
-from ..src.helpers import sanitize_HTML, add_method_to, deep_copy_dict
+from ..src.helpers import sanitize_HTML, add_method_to, nested_dict_copy
 
 # contains no methods
 class A: 
@@ -36,18 +36,22 @@ class TestHelperFunctions():
 
         dict_2 = { 
             'usop' : 'shoot', 
-            'horse' : 'bla'
+            'horse' : 'bla',
+            'website': 'uno',
+            'config' : 'due'
         }
 
-        deep_copied_dict = deep_copy_dict(dict_1, dict_2)
+        new_dict = nested_dict_copy(dict_1, dict_2)
 
         correct_dict = {
             'dog' : 'cat', 
             'usop' : 'shoot',
-            'horse' : 'bla'
+            'horse' : 'bla',
+            'website': 'uno',
+            'config' : 'due'
         }
 
-        assert deep_copied_dict == correct_dict
+        assert new_dict == correct_dict
     
     def test_deep_copying_of_dicts_1_layer(self):
 
@@ -64,7 +68,7 @@ class TestHelperFunctions():
             }
         }
 
-        deep_copied_dict = deep_copy_dict(dict_1, dict_2)
+        new_dict = nested_dict_copy(dict_1, dict_2)
 
         correct_dict = {
             'dog' : 'cat', 
@@ -75,7 +79,7 @@ class TestHelperFunctions():
             }
         }
 
-        assert deep_copied_dict == correct_dict
+        assert new_dict == correct_dict
     
     def test_deep_copying_of_nested_dicts_2_layers(self):
 
@@ -97,7 +101,7 @@ class TestHelperFunctions():
             }
         }
 
-        deep_copied_dict = deep_copy_dict(dict_1, dict_2)
+        new_dict = nested_dict_copy(dict_1, dict_2)
 
         correct_dict = {
             'dog' : 'cat', 
@@ -111,5 +115,5 @@ class TestHelperFunctions():
             }
         }
 
-        assert deep_copied_dict == correct_dict
+        assert new_dict == correct_dict
 
