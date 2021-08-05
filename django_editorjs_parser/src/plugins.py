@@ -3,7 +3,6 @@ from django_editorjs_parser.src.helpers import sanitize_HTML
 
 import re
 
-
 from functools import reduce
 
 class DefaultPlugins:
