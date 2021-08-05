@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: django-editorjs-parser
+Version: 0.1
+Summary: Parser for clean-blocks used by editor-js written in python
+Home-page: https://github.com/giokast/python_editorjs_parser
+Author: giovkast
+Author-email: giovkast@gmail.com
+License: MIT
+Download-URL: https://github.com/giokast/python_editorjs_parser/archive/refs/tags/v_01.tar.gz
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+
+UNKNOWN
+
