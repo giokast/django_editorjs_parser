@@ -1,5 +1,5 @@
-from ..src.plugins import DefaultPlugins
-from ..src.config import ParserConfig
+from ..plugins import DefaultPlugins
+from ..config import ParserConfig
 
 class Test_Plugins:
 

@@ -1,6 +1,6 @@
 import pytest
 
-from ..src.helpers import sanitize_HTML, add_method_to, nested_dict_copy
+from ..helpers import sanitize_HTML, add_method_to, nested_dict_copy
 
 # contains no methods
 class A: 

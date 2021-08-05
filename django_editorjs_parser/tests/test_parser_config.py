@@ -1,8 +1,6 @@
 import pytest
 
-from ..src.config import ParserConfig, BaseConfig
-
-
+from ..config import ParserConfig, BaseConfig
 
 class TestParserConfig():
 

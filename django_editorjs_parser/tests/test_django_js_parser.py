@@ -1,6 +1,6 @@
 import pytest
 
-from ..src.parser import EditorJSParser
+from ..parser import EditorJSParser
 
 class Test_EditorJSParser: 
 
