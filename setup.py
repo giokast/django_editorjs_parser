@@ -4,13 +4,14 @@ setup(
     name = 'django_editorjs_parser',
     packages = ['django_editorjs_parser'],
     py_modules = ['django_editorjs_parser.src'],
-    version = '0.1',
+    version = '0.1.4',
     license = 'MIT',
     description = 'Parser for clean-blocks used by editor-js written in python',
     author='giovkast',
     author_email='giovkast@gmail.com',
     url = 'https://github.com/giokast/python_editorjs_parser',
-    download_url = 'https://github.com/giokast/python_editorjs_parser/archive/refs/tags/v_01.tar.gz',
+    download_url = 'https://github.com/giokast/django_editorjs_parser/archive/refs/tags/0.1.4.tar.gz',
+
     keywords = '',
     install_requires = [
 
